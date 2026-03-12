@@ -1,0 +1,31 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "position": "Giám Đốc Dự Án",
+      "company": "Công Ty Xây Dựng Lớn",
+      "startDate": "2022-01-01",
+      "endDate": null,
+      "isCurrent": true,
+      "description": "Quản lý 5 dự án xây dựng dân dụng đồng thời với tổng giá trị hơn 500 tỷ đồng. Chỉ đạo đội ngũ 100+ nhân viên, đảm bảo tuân thủ các tiêu chuẩn an toàn lao động và chất lượng xây dựng."
+    },
+    {
+      "id": 2,
+      "position": "Kỹ Sư Xây Dựng Chuyên Trách",
+      "company": "Tập Đoàn Xây Dựng Phát Triển",
+      "startDate": "2018-06-01",
+      "endDate": "2021-12-31",
+      "isCurrent": false,
+      "description": "Thiết kế, giám sát thi công các công trình chung cư, nhà phố với tổng diện tích hơn 50,000 m2. Phối hợp với các bộ phận thiết kế để đảm bảo tuân thủ quy chuẩn xây dựng."
+    },
+    {
+      "id": 3,
+      "position": "Kỹ Sư Thi Công",
+      "company": "Công Ty Cổ Phần Xây Lắp Công Nghiệp",
+      "startDate": "2015-03-01",
+      "endDate": "2018-05-31",
+      "isCurrent": false,
+      "description": "Giám sát các hạng mục thi công, kiểm soát chất lượng vật liệu, thợ xây, và tiến độ công trình. Xử lý các sự cố kỹ thuật trong quá trình xây dựng."
+    }
+  ]
+}

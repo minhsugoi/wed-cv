@@ -1,0 +1,49 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Dự Án Chung Cư Cao Cấp Quận 1",
+      "description": "Công trình chung cư 32 tầng với 200 căn hộ, diện tích xây dựng 25,000 m2. Dự án được hoàn thành đúng tiến độ với chi phí 380 tỷ đồng.",
+      "role": "Giám Đốc Dự Án",
+      "duration": "2020-2023",
+      "budget": "380 tỷ đồng",
+      "team": "15 kỹ sư + 50+ công nhân",
+      "outcomes": [
+        "Hoàn thành đúng tiến độ, tiết kiệm 5% chi phí",
+        "Đạt chứng chỉ xây dựng xanh LEED Silver",
+        "Tỷ lệ khách hàng hài lòng 98%"
+      ],
+      "image": "/images/project-1.png"
+    },
+    {
+      "id": 2,
+      "title": "Khu Nhà Phố Hiện Đại Quận 7",
+      "description": "Dự án khu nhà phố 5 tầng gồm 45 căn với tiện ích hoàn chỉnh. Tổng diện tích đất 8,000 m2, diện tích xây dựng 12,000 m2.",
+      "role": "Kỹ Sư Chính",
+      "duration": "2019-2021",
+      "budget": "120 tỷ đồng",
+      "team": "8 kỹ sư + 30 công nhân",
+      "outcomes": [
+        "Bán hết trong 6 tháng đầu mở bán",
+        "Cải tiến thiết kế giúp tăng giá trị 15%",
+        "Không có khiếu nại về chất lượng"
+      ],
+      "image": "/images/project-2.png"
+    },
+    {
+      "id": 3,
+      "title": "Trung Tâm Thương Mại Cao Cấp Quận 1",
+      "description": "Tòa nhà thương mại 24 tầng với các không gian bán lẻ, văn phòng và nhà hàng. Diện tích xây dựng 18,000 m2 với công nghệ bảo mật hiện đại.",
+      "role": "Kỹ Sư Thi Công",
+      "duration": "2018-2020",
+      "budget": "280 tỷ đồng",
+      "team": "12 kỹ sư + 40 công nhân",
+      "outcomes": [
+        "Hoàn thành 4 tháng sớm hơn dự kiến",
+        "Tiết kiệm 12% chi phí nhân công",
+        "Đạt giải Công Trình Xây Dựng Xuất Sắc 2020"
+      ],
+      "image": "/images/project-3.png"
+    }
+  ]
+}

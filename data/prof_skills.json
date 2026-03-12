@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Quản Lý Dự Án",
+    "desc": "Quản lý dự án từ khái niệm đến hoàn thành, kiểm soát ngân sách, tiến độ và chất lượng.",
+    "badges": ["MSProject", "Primavera", "Agile"]
+  },
+  {
+    "title": "Thiết Kế & Tư Vấn",
+    "desc": "Hỗ trợ thiết kế kiến trúc, kỹ thuật và tư vấn giải pháp xây dựng tối ưu.",
+    "badges": ["AutoCAD", "BIM", "Revit"]
+  },
+  {
+    "title": "Kiểm Soát Chất Lượng",
+    "desc": "Đảm bảo chất lượng vật liệu, thi công theo tiêu chuẩn quốc gia và quốc tế.",
+    "badges": ["QA/QC", "ISO 9001", "Testing"]
+  },
+  {
+    "title": "An Toàn Lao Động",
+    "desc": "Thực thi các quy trình an toàn lao động, quản lý rủi ro và đào tạo nhân sự.",
+    "badges": ["OSHA", "HSE", "Training"]
+  }
+]

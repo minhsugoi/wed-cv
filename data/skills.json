@@ -1,0 +1,46 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "name": "AutoCAD",
+      "proficiency": 95,
+      "category": "Thiết kế"
+    },
+    {
+      "id": 2,
+      "name": "Revit",
+      "proficiency": 87,
+      "category": "Thiết kế"
+    },
+    {
+      "id": 3,
+      "name": "Microsoft Excel",
+      "proficiency": 85,
+      "category": "Office"
+    },
+    {
+      "id": 4,
+      "name": "Microsoft Word",
+      "proficiency": 80,
+      "category": "Office"
+    },
+    {
+      "id": 5,
+      "name": "SAP",
+      "proficiency": 75,
+      "category": "Quản lý"
+    },
+    {
+      "id": 6,
+      "name": "Project Management",
+      "proficiency": 88,
+      "category": "Quản lý"
+    },
+    {
+      "id": 7,
+      "name": "Dự toán G8",
+      "proficiency": 50,
+      "category": "Quản lý"
+    }
+  ]
+}

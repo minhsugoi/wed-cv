@@ -1,0 +1,28 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "title": "Phát Triển Kỹ Năng Quản Lý",
+      "description": "Tiếp tục nâng cao kỹ năng quản lý dự án, lãnh đạo đội nhóm và xử lý các tình huống phức tạp trong ngành xây dựng.",
+      "timeline": "2024-2026"
+    },
+    {
+      "id": 2,
+      "title": "Áp Dụng Công Nghệ Xanh",
+      "description": "Tích cực áp dụng các công nghệ xây dựng bền vững và giải pháp tiết kiệm năng lượng vào các dự án tương lai.",
+      "timeline": "2024-2027"
+    },
+    {
+      "id": 3,
+      "title": "Mở Rộng Danh Mục Dự Án",
+      "description": "Tham gia các dự án lớn trong lĩnh vực hạ tầng, giao thông, và các công trình công cộng quy mô lớn.",
+      "timeline": "2025-2028"
+    },
+    {
+      "id": 4,
+      "title": "Chuyên Gia Công Nghệ BIM",
+      "description": "Trở thành chuyên gia trong ứng dụng công nghệ BIM (Building Information Modeling) cho quản lý dự án xây dựng.",
+      "timeline": "2024-2025"
+    }
+  ]
+}
