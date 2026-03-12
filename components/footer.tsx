@@ -77,7 +77,7 @@ export function Footer() {
         <Separator />
 
         <div className="mt-8 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Hồ Sơ Chuyên Gia Xây Dựng. Bản quyền được bảo vệ.</p>
+          <p>&copy; {new Date().getFullYear()} Phùng Ngọc Minh | Portfolio. Bản quyền được bảo vệ.</p>
           <p>Thiết kế và phát triển bởi <span className="text-foreground font-medium">Ngọc Minh</span></p>
         </div>
       </div>

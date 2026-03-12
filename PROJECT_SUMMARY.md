@@ -1,4 +1,4 @@
-# Tóm Tắt Dự Án - Construction Professional Portfolio
+# Tóm Tắt Dự Án - Phùng Ngọc Minh | Portfolio
 
 ## Mục Đích
 
@@ -275,7 +275,7 @@ All content can be customized:
 
 ## Conclusion
 
-Dự án này cung cấp một giải pháp hoàn chỉnh, chuyên nghiệp, và sẵn sàng sử dụng cho những chuyên gia xây dựng muốn có một hồ sơ online chuyên gia.
+Dự án này cung cấp một giải pháp hoàn chỉnh, chuyên nghiệp, và sẵn sàng sử dụng cho Phùng Ngọc Minh để giới thiệu hồ sơ cá nhân | PM Portfolio.
 
 **Website được xây dựng với:**
 - ✅ Modern technology stack

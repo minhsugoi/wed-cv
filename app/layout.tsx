@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Hồ Sơ Chuyên Nghiệp - Ngành Xây Dựng',
+  title: 'Phùng Ngọc Minh | Portfolio',
   description: 'Hồ sơ chuyên nghiệp của chuyên gia ngành xây dựng, giới thiệu kinh nghiệm, dự án hoàn thành, và mục tiêu sự nghiệp',
   generator: 'v0.app',
   icons: {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'Hồ Sơ Chuyên Nghiệp - Ngành Xây Dựng',
+    title: 'Phùng Ngọc Minh | Portfolio',
     description: 'Hồ sơ chuyên nghiệp của chuyên gia ngành xây dựng',
     type: 'website',
   },

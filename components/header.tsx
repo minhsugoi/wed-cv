@@ -36,10 +36,10 @@ export function Header() {
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6" suppressHydrationWarning>
         <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground font-bold">
-            CP
+            PM
           </div>
           <span className="text-xl font-bold text-foreground hidden sm:inline">
-            Hồ Sơ Chuyên Gia
+            Phùng Ngọc Minh | Portfolio
           </span>
         </Link>
 
@@ -58,7 +58,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {sessionData ? (
+          {sessionData && (
             <>
               <Link href="/admin/dashboard">
                 <Button variant="outline" size="sm">
@@ -73,12 +73,6 @@ export function Header() {
                 Đăng Xuất
               </Button>
             </>
-          ) : (
-            <Link href="/admin/login">
-              <Button variant="outline" size="sm">
-                Đăng Nhập
-              </Button>
-            </Link>
           )}
         </div>
       </div>
