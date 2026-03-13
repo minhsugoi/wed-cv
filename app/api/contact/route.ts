@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 export async function POST(request: Request) {
   try {
@@ -12,6 +12,7 @@ export async function POST(request: Request) {
       )
     }
 
+    const supabase = getSupabaseClient()
     const { error } = await supabase
       .from('inquiries')
       .insert([
@@ -43,6 +44,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
+    const supabase = getSupabaseClient()
     const { data, error } = await supabase
       .from('inquiries')
       .select('id, name, email, subject, message, created_at')

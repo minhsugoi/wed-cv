@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
-import { supabase } from '@/lib/supabase'
+import { getSupabaseClient } from '@/lib/supabase'
 
 const ALLOWED_TYPES = new Set([
   'introduction',
@@ -124,6 +124,7 @@ export async function GET(request: Request) {
       )
     }
 
+    const supabase = getSupabaseClient()
     let query = supabase
       .from(type)
       .select(SELECT_BY_TYPE[type] || '*')
@@ -167,6 +168,7 @@ export async function POST(request: Request) {
       )
     }
 
+    const supabase = getSupabaseClient()
     let dataToInsert = []
 
     if (type === 'experience') {
