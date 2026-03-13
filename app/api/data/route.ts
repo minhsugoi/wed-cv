@@ -22,7 +22,7 @@ const SELECT_BY_TYPE: Record<string, string> = {
     'id, title, description, role, duration, budget, team, image, outcomes',
   skills: 'id, name, proficiency, category',
   goals: 'id, title, description, timeline',
-  images: 'id, name, url, created_at',
+  images: 'id, name, url',
   prof_skills: 'title, description, badges',
   inquiries: 'id, name, email, subject, message, created_at',
 }
@@ -89,7 +89,11 @@ function mapGetResult(type: string, data: any[]) {
   return data
 }
 
-async function deleteMissingIds(table: string, keepIds: (string | number)[]) {
+async function deleteMissingIds(
+  supabase: ReturnType<typeof getSupabaseClient>,
+  table: string,
+  keepIds: (string | number)[]
+) {
   const { data: existing, error } = await supabase
     .from(table)
     .select('id')
@@ -221,7 +225,7 @@ export async function POST(request: Request) {
       // Only support deletions from admin (no edits), based on current UI behavior.
       const incoming = Array.isArray(data.inquiries) ? data.inquiries : []
       const keepIds = incoming.map((item: any) => item.id).filter(Boolean)
-      await deleteMissingIds('inquiries', keepIds)
+      await deleteMissingIds(supabase, 'inquiries', keepIds)
       return NextResponse.json({ success: true })
     } else {
       dataToInsert = Array.isArray(data) ? data : [data]
@@ -244,7 +248,7 @@ export async function POST(request: Request) {
       } else {
         const keepIds = dataToInsert.map((item: any) => item.id).filter(Boolean)
         if (keepIds.length > 0) {
-          await deleteMissingIds(type, keepIds)
+          await deleteMissingIds(supabase, type, keepIds)
         }
       }
     }
