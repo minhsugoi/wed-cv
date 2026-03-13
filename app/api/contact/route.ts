@@ -1,17 +1,5 @@
 import { NextResponse } from 'next/server'
-import { readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
-
-const dataDir = join(process.cwd(), 'data')
-
-interface ContactSubmission {
-  id: string
-  name: string
-  email: string
-  phone?: string
-  message: string
-  submittedAt: string
-}
+import { supabase } from '@/lib/supabase'
 
 export async function POST(request: Request) {
   try {
@@ -24,25 +12,21 @@ export async function POST(request: Request) {
       )
     }
 
-    // Read existing inquiries
-    const inquiriesPath = join(dataDir, 'inquiries.json')
-    const inquiriesData = JSON.parse(readFileSync(inquiriesPath, 'utf-8'))
-    
-    // Create new inquiry
-    const newInquiry: ContactSubmission = {
-      id: `inquiry_${Date.now()}`,
-      name,
-      email,
-      phone: phone || '',
-      message,
-      submittedAt: new Date().toISOString(),
-    }
+    const { error } = await supabase
+      .from('inquiries')
+      .insert([
+        { 
+          name, 
+          email, 
+          subject: phone, // Mapping phone to subject for now based on previous schema, or we need to update schema
+          message 
+        }
+      ])
 
-    // Add to inquiries
-    inquiriesData.inquiries.push(newInquiry)
-    
-    // Write back to file
-    writeFileSync(inquiriesPath, JSON.stringify(inquiriesData, null, 2))
+    if (error) {
+      console.error('Supabase insert error:', error)
+      throw error
+    }
 
     return NextResponse.json({
       success: true,
@@ -59,9 +43,27 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const inquiriesPath = join(dataDir, 'inquiries.json')
-    const data = JSON.parse(readFileSync(inquiriesPath, 'utf-8'))
-    return NextResponse.json(data.inquiries)
+    const { data, error } = await supabase
+      .from('inquiries')
+      .select('id, name, email, subject, message, created_at')
+      .order('created_at', { ascending: false })
+
+    if (error) {
+      console.error('Supabase select error:', error)
+      throw error
+    }
+    
+    // Map to expected structure if needed
+    const inquiries = data.map(item => ({
+      id: item.id.toString(),
+      name: item.name,
+      email: item.email,
+      phone: item.subject, // Map back
+      message: item.message,
+      submittedAt: item.created_at
+    }))
+
+    return NextResponse.json(inquiries)
   } catch (error) {
     console.error('Error reading inquiries:', error)
     return NextResponse.json(
