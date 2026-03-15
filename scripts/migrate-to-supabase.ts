@@ -148,7 +148,8 @@ CREATE TABLE IF NOT EXISTS images (
   id TEXT PRIMARY KEY,
   name TEXT,
   url TEXT,
-  type TEXT
+  type TEXT,
+  public_id TEXT
 );
 
 -- Create inquiries table

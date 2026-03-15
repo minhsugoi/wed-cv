@@ -16,6 +16,7 @@ interface ImageItem {
   name: string
   url: string
   type: 'upload' | 'link'
+  public_id?: string
 }
 
 export default function ImageManagementPage() {
@@ -88,6 +89,7 @@ export default function ImageManagementPage() {
           name: file.name,
           url: data.url,
           type: 'upload',
+          public_id: data.publicId,
         }
         const updated = [newImage, ...images]
         if (await saveImages(updated)) {

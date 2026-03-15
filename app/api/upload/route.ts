@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
-import { writeFile, mkdir } from 'fs/promises'
-import { join } from 'path'
 import { auth } from '@/lib/auth'
+import { getCloudinary } from '@/lib/cloudinary'
 
 export async function POST(request: Request) {
   const session = await auth()
@@ -27,25 +26,36 @@ export async function POST(request: Request) {
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
-    // Ensure images directory exists
-    const uploadDir = join(process.cwd(), 'public', 'images')
-    try {
-      await mkdir(uploadDir, { recursive: true })
-    } catch (err) {
-      // Ignore if directory already exists
-    }
+    const cloudinary = getCloudinary()
+    const folder = process.env.CLOUDINARY_FOLDER || undefined
 
-    // Create unique filename
-    const filename = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`
-    const path = join(uploadDir, filename)
-    
-    await writeFile(path, buffer)
-    
-    const url = `/images/${filename}`
+    const uploadResult = await new Promise<{
+      secure_url: string
+      public_id: string
+      original_filename?: string
+    }>((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder,
+          resource_type: 'image',
+          use_filename: true,
+          unique_filename: true,
+        },
+        (error, result) => {
+          if (error || !result) {
+            reject(error || new Error('Upload failed'))
+            return
+          }
+          resolve(result as any)
+        }
+      )
+      stream.end(buffer)
+    })
 
     return NextResponse.json({ 
       success: true, 
-      url,
+      url: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
       name: file.name
     })
   } catch (error) {

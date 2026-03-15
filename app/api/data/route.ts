@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { getSupabaseClient } from '@/lib/supabase'
+import { getCloudinary } from '@/lib/cloudinary'
 
 const ALLOWED_TYPES = new Set([
   'introduction',
@@ -22,7 +23,7 @@ const SELECT_BY_TYPE: Record<string, string> = {
     'id, title, description, role, duration, budget, team, image, outcomes',
   skills: 'id, name, proficiency, category',
   goals: 'id, title, description, timeline',
-  images: 'id, name, url',
+  images: 'id, name, url, type, public_id',
   prof_skills: 'title, description, badges',
   inquiries: 'id, name, email, subject, message, created_at',
 }
@@ -116,6 +117,25 @@ async function deleteMissingIds(
   if (deleteError) throw deleteError
 }
 
+async function deleteCloudinaryImages(publicIds: string[]) {
+  if (publicIds.length === 0) return
+
+  const cloudinary = getCloudinary()
+  const results = await Promise.all(
+    publicIds.map((publicId) =>
+      cloudinary.uploader.destroy(publicId, { invalidate: true })
+    )
+  )
+
+  const failed = results.filter(
+    (result) => result?.result && !['ok', 'not found'].includes(result.result)
+  )
+
+  if (failed.length > 0) {
+    throw new Error('Failed to delete one or more Cloudinary images')
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)
@@ -175,6 +195,8 @@ export async function POST(request: Request) {
     const supabase = getSupabaseClient()
     let dataToInsert = []
 
+    let cloudinaryDeletions: string[] = []
+
     if (type === 'experience') {
       dataToInsert = data.experiences.map((exp: any) => ({
         id: exp.id,
@@ -188,7 +210,27 @@ export async function POST(request: Request) {
     } else if (type === 'goals') {
       dataToInsert = data.goals
     } else if (type === 'images') {
-      dataToInsert = data.images
+      dataToInsert = (data.images || []).map((item: any) => ({
+        ...item,
+        public_id: item.public_id ?? item.publicId,
+      }))
+
+      const { data: existingImages, error: existingError } = await supabase
+        .from('images')
+        .select('id, public_id, type')
+
+      if (existingError) throw existingError
+
+      const keepIds = (data.images || [])
+        .map((item: any) => item.id)
+        .filter(Boolean)
+        .map((id: any) => id.toString())
+      const keepSet = new Set(keepIds)
+
+      cloudinaryDeletions = (existingImages || [])
+        .filter((item: any) => !keepSet.has(item.id?.toString?.() ?? String(item.id)))
+        .filter((item: any) => item.public_id)
+        .map((item: any) => item.public_id as string)
     } else if (type === 'introduction') {
       dataToInsert = [{
         id: 1,
@@ -229,6 +271,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true })
     } else {
       dataToInsert = Array.isArray(data) ? data : [data]
+    }
+
+    if (type === 'images') {
+      await deleteCloudinaryImages(cloudinaryDeletions)
     }
 
     if (type === 'prof_skills') {
